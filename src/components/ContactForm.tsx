@@ -1,5 +1,5 @@
 "use client";
-import { ChevronRight, Loader2 } from "lucide-react";
+import { CheckCircle2, ChevronRight, Loader2 } from "lucide-react";
 import React from "react";
 import { Label } from "./ui/label";
 import { Input } from "./ui/ace-input";
@@ -7,7 +7,14 @@ import { Textarea } from "./ui/ace-textarea";
 import { cn } from "@/lib/utils";
 import { useToast } from "./ui/use-toast";
 import { Button } from "./ui/button";
-import { useRouter } from "next/navigation";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "./ui/dialog";
 import { z } from "zod";
 
 const formSchema = z.object({
@@ -24,9 +31,9 @@ const ContactForm = () => {
   const [message, setMessage] = React.useState("");
   const [loading, setLoading] = React.useState(false);
   const [errors, setErrors] = React.useState<FieldErrors>({});
+  const [showSuccessModal, setShowSuccessModal] = React.useState(false);
 
   const { toast } = useToast();
-  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -54,89 +61,114 @@ const ContactForm = () => {
         const data = await res.json();
         throw new Error(data.error || `Request failed (${res.status})`);
       }
-      toast({
-        title: "Cảm ơn bạn!",
-        description: "Tôi sẽ phản hồi bạn trong thời gian sớm nhất.",
-        variant: "default",
-        className: cn("top-0 mx-auto flex fixed md:top-4 md:right-4"),
-      });
-      setLoading(false);
+      setShowSuccessModal(true);
       setFullName("");
       setEmail("");
       setMessage("");
-      const timer = setTimeout(() => {
-        router.push("/");
-        clearTimeout(timer);
-      }, 1000);
     } catch (err) {
       toast({
         title: "Error",
         description: "Something went wrong! Please try again.",
-        className: cn(
-          "top-0 w-full flex justify-center fixed md:max-w-7xl md:top-4 md:right-4"
-        ),
         variant: "destructive",
       });
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
+
   return (
-    <form className="min-w-7xl mx-auto sm:mt-4" onSubmit={handleSubmit} aria-busy={loading}>
-      <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
-        <LabelInputContainer>
-          <Label htmlFor="fullname">Full name</Label>
-          <Input
-            id="fullname"
-            placeholder="Your Name"
-            type="text"
-            value={fullName}
-            onChange={(e) => { setFullName(e.target.value); setErrors((p) => ({ ...p, fullName: undefined })); }}
+    <>
+      <form className="min-w-7xl mx-auto sm:mt-4" onSubmit={handleSubmit} aria-busy={loading}>
+        <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
+          <LabelInputContainer>
+            <Label htmlFor="fullname">Full name</Label>
+            <Input
+              id="fullname"
+              placeholder="Your Name"
+              type="text"
+              value={fullName}
+              onChange={(e) => {
+                setFullName(e.target.value);
+                setErrors((p) => ({ ...p, fullName: undefined }));
+              }}
+            />
+            {errors.fullName && <p className="text-sm text-red-500">{errors.fullName}</p>}
+          </LabelInputContainer>
+          <LabelInputContainer className="mb-4">
+            <Label htmlFor="email">Email Address</Label>
+            <Input
+              id="email"
+              placeholder="you@example.com"
+              type="email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setErrors((p) => ({ ...p, email: undefined }));
+              }}
+            />
+            {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
+          </LabelInputContainer>
+        </div>
+        <div className="grid w-full gap-1.5 mb-4">
+          <Label htmlFor="content">Your Message</Label>
+          <Textarea
+            placeholder="Tell me about about your project,"
+            id="content"
+            value={message}
+            onChange={(e) => {
+              setMessage(e.target.value);
+              setErrors((p) => ({ ...p, message: undefined }));
+            }}
           />
-          {errors.fullName && <p className="text-sm text-red-500">{errors.fullName}</p>}
-        </LabelInputContainer>
-        <LabelInputContainer className="mb-4">
-          <Label htmlFor="email">Email Address</Label>
-          <Input
-            id="email"
-            placeholder="you@example.com"
-            type="email"
-            value={email}
-            onChange={(e) => { setEmail(e.target.value); setErrors((p) => ({ ...p, email: undefined })); }}
-          />
-          {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
-        </LabelInputContainer>
-      </div>
-      <div className="grid w-full gap-1.5 mb-4">
-        <Label htmlFor="content">Your Message</Label>
-        <Textarea
-          placeholder="Tell me about about your project,"
-          id="content"
-          value={message}
-          onChange={(e) => { setMessage(e.target.value); setErrors((p) => ({ ...p, message: undefined })); }}
-        />
-        {errors.message && <p className="text-sm text-red-500">{errors.message}</p>}
-        <p className="text-sm text-muted-foreground">
-          I&apos;ll never share your data with anyone else. Pinky promise!
-        </p>
-      </div>
-      <Button
-        disabled={loading}
-        className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
-        type="submit"
-      >
-        {loading ? (
-          <div className="flex items-center justify-center">
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            <p>Please wait</p>
+          {errors.message && <p className="text-sm text-red-500">{errors.message}</p>}
+          <p className="text-sm text-muted-foreground">
+            I&apos;ll never share your data with anyone else. Pinky promise!
+          </p>
+        </div>
+        <Button
+          disabled={loading}
+          className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
+          type="submit"
+        >
+          {loading ? (
+            <div className="flex items-center justify-center">
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              <p>Please wait</p>
+            </div>
+          ) : (
+            <div className="flex items-center justify-center">
+              Send Message <ChevronRight className="w-4 h-4 ml-4" />
+            </div>
+          )}
+          <BottomGradient />
+        </Button>
+      </form>
+
+      <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
+        <DialogContent className="sm:max-w-md text-center p-6 sm:p-8">
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-green-500/10 text-green-500 mb-2">
+            <CheckCircle2 className="h-8 w-8" />
           </div>
-        ) : (
-          <div className="flex items-center justify-center">
-            Send Message <ChevronRight className="w-4 h-4 ml-4" />
-          </div>
-        )}
-        <BottomGradient />
-      </Button>
-    </form>
+          <DialogHeader className="text-center sm:text-center space-y-2">
+            <DialogTitle className="text-xl sm:text-2xl font-bold">
+              Cảm ơn bạn!
+            </DialogTitle>
+            <DialogDescription className="text-sm sm:text-base text-muted-foreground text-center">
+              Tôi đã nhận được thông tin và sẽ liên hệ lại với bạn một cách nhanh nhất.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="mt-4 sm:justify-center">
+            <Button
+              type="button"
+              onClick={() => setShowSuccessModal(false)}
+              className="w-full sm:w-auto px-8"
+            >
+              Đóng
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 };
 
