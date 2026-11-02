@@ -62,11 +62,13 @@ export default function FunnyThemeToggle({
   };
 
   const goLight = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setCounter({ ...counter, light: counter.light + 1 });
     toggleTheme("light", e);
   };
 
   const goDark = (e: React.MouseEvent) => {
+    e.stopPropagation();
     const description =
       themeDisclaimers.dark[counter.dark % themeDisclaimers.dark.length];
     setCounter({ ...counter, dark: counter.dark + 1 });
@@ -110,6 +112,7 @@ export default function FunnyThemeToggle({
             <Button
               variant="outline"
               size="icon"
+              onClick={(e) => e.stopPropagation()}
               className={cn("border-none bg-transparent", className)}
             >
               <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all duration-500 dark:-rotate-90 dark:scale-0" />
@@ -117,7 +120,7 @@ export default function FunnyThemeToggle({
               <span className="sr-only">Toggle theme</span>
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="z-[99999] flex flex-col items-center gap-2">
+          <PopoverContent onClick={(e) => e.stopPropagation()} className="z-[99999] flex flex-col items-center gap-2">
             {/* <p className="text-sm">these stunts are done by professional only</p> */}
             <p className="text-sm text-center">
               {themeDisclaimers.light[counter.light]}

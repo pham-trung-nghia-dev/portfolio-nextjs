@@ -71,13 +71,13 @@ const highlights = [
 
 const AboutSection = () => {
   return (
-    <SectionWrapper id="about" className="py-20 md:py-28 min-h-screen">
+    <SectionWrapper id="about" className="py-8 md:py-28 min-h-0 md:min-h-screen">
       <div className="w-full max-w-5xl px-4 md:px-8 mx-auto pointer-events-auto">
         <SectionHeader
           id="about"
           title="About Me"
           desc="Precision in every single line • Dedicated Fullstack Engineer"
-          className="mb-12 md:mb-16 static"
+          className="mb-6 md:mb-16 static"
         />
 
         {/* Hero Tagline & Main Intro Card */}

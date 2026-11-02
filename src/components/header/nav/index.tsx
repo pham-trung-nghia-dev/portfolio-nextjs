@@ -35,7 +35,7 @@ const Index: React.FC<IndexProps> = ({ setIsActive }) => {
       onClick={() => setIsActive(false)}
       className={cn(styles.nav, "relative")}
     >
-      <div className={cn(styles.wrapper, 'flex justify-end sm:justify-start')}>
+      <div className={cn(styles.wrapper, 'flex justify-end sm:justify-start pb-16 sm:pb-0')}>
         <div className={styles.container}>
           <Body
             links={links}
@@ -57,7 +57,7 @@ const Index: React.FC<IndexProps> = ({ setIsActive }) => {
         exit={{ opacity: 0 }}
         transition={{ delay: 0.5, duration: 0.4 }}
         onClick={(e) => e.stopPropagation()}
-        className="absolute bottom-0 right-0"
+        className="absolute bottom-2 right-4 sm:bottom-0 sm:right-0"
       >
         <MotionToggle />
       </motion.div>

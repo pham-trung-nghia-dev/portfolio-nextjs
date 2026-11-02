@@ -19,8 +19,8 @@ import ScrollingPreview from "../scrolling-preview";
 
 const ProjectsSection = () => {
   return (
-    <SectionWrapper id="projects" className="max-w-7xl mx-auto md:min-h-[130vh] px-4">
-      <SectionHeader id="projects" title="Projects" />
+    <SectionWrapper id="projects" className="max-w-7xl mx-auto min-h-0 md:min-h-[130vh] py-8 md:py-0 px-4">
+      <SectionHeader id="projects" title="Projects" className="mb-6 md:mb-20 static" />
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {projects.map((project) => (
           <ProjectCard key={project.id} project={project} />
