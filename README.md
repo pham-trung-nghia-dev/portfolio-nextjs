@@ -9,14 +9,10 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
 [![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
 <br/>
 
-[📄 View CV](https://drive.google.com/file/d/15pnUQ6_fmNiuUqGhwlW1lCKd5FenuFJe/view?usp=sharing) •
-[💼 LinkedIn](https://www.linkedin.com/in/trung-nghĩa-phạm-2695423b3) •
-[💬 Zalo](https://zalo.me/0335766722) •
-[✉️ Email](mailto:phamtrungnghia15082003@gmail.com)
+🌐 **Live Demo**: [https://phamtrungnghia-fullstack-dev.vercel.app](https://phamtrungnghia-fullstack-dev.vercel.app)
 
 </div>
 
@@ -137,6 +133,7 @@ portfolio-nextjs/
 ## 📬 Contact & Connect
 
 - **Full Name**: Phạm Trung Nghĩa
+- **Live Website**: [phamtrungnghia-fullstack-dev.vercel.app](https://phamtrungnghia-fullstack-dev.vercel.app)
 - **Email**: [phamtrungnghia15082003@gmail.com](mailto:phamtrungnghia15082003@gmail.com)
 - **LinkedIn**: [trung-nghĩa-phạm](https://www.linkedin.com/in/trung-nghĩa-phạm-2695423b3)
 - **Zalo**: [0335766722](https://zalo.me/0335766722)
