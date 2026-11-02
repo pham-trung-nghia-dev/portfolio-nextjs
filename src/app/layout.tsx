@@ -36,12 +36,13 @@ export const metadata: Metadata = {
     title: config.title,
     description: config.description.short,
     url: config.site,
+    siteName: "Phạm Trung Nghĩa | Full-Stack Developer",
     images: [
       {
         url: config.ogImg,
-        width: 800,
-        height: 600,
-        alt: "Portfolio preview",
+        width: 1200,
+        height: 630,
+        alt: "Phạm Trung Nghĩa Portfolio Preview",
       },
     ],
     type: "website",
