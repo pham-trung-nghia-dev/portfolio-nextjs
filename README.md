@@ -144,8 +144,3 @@ portfolio-nextjs/
 - **Curriculum Vitae**: [View CV on Google Drive](https://drive.google.com/file/d/15pnUQ6_fmNiuUqGhwlW1lCKd5FenuFJe/view?usp=sharing)
 
 ---
-
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).
-Base template credits to [Naresh Khatri](https://github.com/Naresh-Khatri/3d-portfolio).
