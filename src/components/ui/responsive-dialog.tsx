@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { cn } from "@/lib/utils";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import {
   Dialog,
@@ -87,8 +88,10 @@ function ResponsiveDialogContent({
   }
 
   return (
-    <DrawerContent className={className}>
-      <ScrollArea className="max-h-[85vh] px-4 pb-4 overflow-y-auto!" data-lenis-prevent>{children}</ScrollArea>
+    <DrawerContent className={cn("max-h-[92vh] h-[92vh] flex flex-col p-0 overflow-hidden", className)}>
+      <div className="flex flex-col flex-1 overflow-hidden min-h-0">
+        {children}
+      </div>
     </DrawerContent>
   );
 }
