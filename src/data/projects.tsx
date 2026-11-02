@@ -635,16 +635,21 @@ const projects: Project[] = [
     title: "My Portfolio",
     src: "/assets/projects-screenshots/portfolio/portfolio-full.png",
     screenshots: ["1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png"],
-    live: "",
+    live: "https://phamtrungnghia-fullstack-dev.vercel.app",
+    github: "https://github.com/pham-trung-nghia-dev/portfolio-nextjs",
     skills: {
       frontend: [
-        PROJECT_SKILLS.ts,
         PROJECT_SKILLS.next,
         PROJECT_SKILLS.react,
+        PROJECT_SKILLS.ts,
         PROJECT_SKILLS.tailwind,
+        PROJECT_SKILLS.shadcn,
+        PROJECT_SKILLS.gsap,
         PROJECT_SKILLS.motion,
       ],
-      backend: [],
+      backend: [
+        PROJECT_SKILLS.node,
+      ],
     },
     get content() {
       return (
@@ -653,9 +658,74 @@ const projects: Project[] = [
             3D Interactive Portfolio
           </TypographyP>
           <TypographyP className="font-mono text-center text-muted-foreground">
-            Trang web portfolio cá nhân kết hợp đồ họa 3D tương tác thời gian thực, giao diện hiện đại và hiệu ứng mượt mà giới thiệu các dự án và năng lực công nghệ.
+            Trang web portfolio cá nhân kết hợp đồ họa 3D tương tác thời gian thực, giao diện hiện đại và hiệu ứng mượt mà giới thiệu các dự án và năng lực công nghệ Fullstack.
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
+
+          <TypographyH3 className="my-4 mt-8">Kiến trúc hệ thống &amp; Điểm nhấn kỹ thuật</TypographyH3>
+          <div className="font-mono text-sm space-y-3 mb-6 bg-secondary/20 p-4 rounded-xl border border-border/60">
+            <p className="font-semibold text-foreground">Luồng hoạt động &amp; Tương tác:</p>
+            <div className="p-3 bg-secondary/50 rounded-lg text-xs leading-relaxed font-mono">
+              Next.js 16 (App Router) ➔ 3D Keyboard Engine (@chibi3d/runtime + Three.js) ➔ GSAP / Motion ➔ Responsive Mobile Accordion ➔ Resend API Form
+            </div>
+            <ul className="list-disc list-inside space-y-1 text-xs text-muted-foreground">
+              <li><strong>Interactive 3D Keyboard</strong>: Dựng hình bàn phím cơ 3D tương tác thời gian thực bằng Three.js, từng phím bấm phản ánh kỹ năng chuyên môn tương ứng.</li>
+              <li><strong>Mobile-Optimized Accordion</strong>: Chuyển đổi linh hoạt thành dạng accordion dọc trên mobile, tối ưu hoàn toàn cho thao tác vuốt chạm.</li>
+              <li><strong>Fluid Animation &amp; Smooth Scroll</strong>: Kết hợp Lenis Smooth Scroll, GSAP ScrollTrigger và Motion cho hiệu ứng lướt mượt mà, không giật lag.</li>
+              <li><strong>Resend API Form</strong>: Xử lý gửi thư trực tiếp qua Serverless Route Handler kèm popup modal thông báo phản hồi nhanh.</li>
+            </ul>
+          </div>
+
+          <TypographyH3 className="my-4 mt-8">Công nghệ sử dụng (Tech Stack)</TypographyH3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div className="p-4 rounded-xl border border-border/60 bg-secondary/10">
+              <h4 className="font-bold text-foreground text-sm mb-2 flex items-center gap-2">
+                <span>Frontend &amp; Animations</span>
+              </h4>
+              <ul className="list-disc list-inside space-y-1.5 text-xs text-muted-foreground font-mono">
+                <li><strong>Next.js 16 (Turbopack)</strong>: Framework React với kiến trúc App Router, SSR/SSG tối ưu SEO và tốc độ.</li>
+                <li><strong>React 19 &amp; TypeScript 5</strong>: Xây dựng component hiện đại, type-safe chặt chẽ.</li>
+                <li><strong>Tailwind CSS &amp; shadcn/ui</strong>: Hệ thống giao diện responsive, Dark/Light mode linh hoạt.</li>
+                <li><strong>GSAP &amp; Motion</strong>: Quản lý animation phức tạp và hiệu ứng chuyển cảnh mượt mà.</li>
+              </ul>
+            </div>
+            <div className="p-4 rounded-xl border border-border/60 bg-secondary/10">
+              <h4 className="font-bold text-foreground text-sm mb-2 flex items-center gap-2">
+                <span>3D Graphics, Backend &amp; DevOps</span>
+              </h4>
+              <ul className="list-disc list-inside space-y-1.5 text-xs text-muted-foreground font-mono">
+                <li><strong>@chibi3d/runtime &amp; Three.js</strong>: Render mô hình 3D và Canvas particle trực tiếp trên web.</li>
+                <li><strong>Next.js Route Handlers</strong>: Backend API xử lý gửi email và validation với Zod.</li>
+                <li><strong>Resend API</strong>: Dịch vụ gửi email giao dịch tốc độ cao và bảo mật.</li>
+                <li><strong>Vercel</strong>: Nền tảng triển khai CI/CD toàn cầu, tự động build &amp; deploy từ GitHub.</li>
+              </ul>
+            </div>
+          </div>
+
+          <TypographyH3 className="my-4 mt-8">Tính năng nổi bật (Features)</TypographyH3>
+          <div className="space-y-4 mb-6 text-sm font-mono">
+            <div className="p-4 rounded-xl border border-border/60 bg-secondary/10">
+              <p className="font-semibold text-foreground text-sm mb-1.5">1. Bàn phím 3D tương tác &amp; Mobile Accordion:</p>
+              <ul className="list-disc list-inside space-y-1 text-xs text-muted-foreground">
+                <li>Mô phỏng bàn phím cơ 3D sống động; tương tác trực tiếp khi hover chuột hoặc nhấn phím vật lý.</li>
+                <li>Tự động chuyển đổi thành danh sách accordion phân cấp chuyên nghiệp trên màn hình di động.</li>
+              </ul>
+            </div>
+            <div className="p-4 rounded-xl border border-border/60 bg-secondary/10">
+              <p className="font-semibold text-foreground text-sm mb-1.5">2. Showcase Dự án &amp; Dialog chi tiết:</p>
+              <ul className="list-disc list-inside space-y-1 text-xs text-muted-foreground">
+                <li>Modal responsive hiển thị phân tích kiến trúc, sơ đồ công nghệ và hình ảnh minh họa chi tiết.</li>
+                <li>Nút chuyển đổi nhanh tới Live Demo và mã nguồn GitHub.</li>
+              </ul>
+            </div>
+            <div className="p-4 rounded-xl border border-border/60 bg-secondary/10">
+              <p className="font-semibold text-foreground text-sm mb-1.5">3. Trải nghiệm &amp; Liên hệ nhanh:</p>
+              <ul className="list-disc list-inside space-y-1 text-xs text-muted-foreground">
+                <li>Chuyển đổi Dark/Light mode ấn tượng với View Transitions.</li>
+                <li>Form liên hệ tích hợp xác thực dữ liệu và popup thông báo cảm ơn ngay giữa màn hình.</li>
+              </ul>
+            </div>
+          </div>
 
           <TypographyH3 className="my-4 mt-8">
             Ảnh chụp chi tiết các Section
