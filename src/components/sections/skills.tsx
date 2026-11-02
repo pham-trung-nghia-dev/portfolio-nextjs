@@ -18,6 +18,7 @@ import {
   CheckCircle2,
   Terminal,
   MousePointerClick,
+  ArrowRight,
 } from "lucide-react";
 import type { KeyboardSkill } from "@/components/keyboard/scene";
 
@@ -51,20 +52,122 @@ const SkillsSection = () => {
       id="skills"
       className={
         showGrid
-          ? "flex w-full min-h-screen flex-col justify-center py-24"
-          : "w-full min-h-screen flex flex-col justify-center py-16 md:py-20 pointer-events-none"
+          ? "flex w-full min-h-0 md:min-h-screen flex-col justify-center py-8 md:py-24"
+          : "w-full min-h-0 md:min-h-screen flex flex-col justify-center py-8 md:py-20 pointer-events-auto md:pointer-events-none"
       }
     >
       <div className="w-full max-w-7xl px-4 md:px-8 mx-auto">
-        {/* Giữ nguyên SectionHeader và Title cũ */}
         <SectionHeader
           id="skills"
           title="Tech Stack"
           desc={showGrid ? "Tools I build with" : "(hint: press a key)"}
-          className="static mb-8 md:mb-12"
+          className="static mb-6 md:mb-12"
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-14 items-center min-h-[60vh]">
+        {/* Mobile View: Vertical Accordion List (Full-width horizontal bars, scrolling down, expanding on tap) */}
+        <div className="block md:hidden w-full relative z-10 pointer-events-auto mb-8 space-y-2.5">
+          {Object.values(SKILLS).slice(0, 24).map((skill) => {
+            const isExpanded = selectedSkill?.name === skill.name;
+            const capability = SKILL_CAPABILITIES[skill.name] ?? {
+              title: skill.label,
+              category: "Technology",
+              capabilities: [skill.shortDescription],
+            };
+
+            return (
+              <div
+                key={skill.name}
+                className={cn(
+                  "w-full rounded-lg border transition-all duration-200 overflow-hidden",
+                  isExpanded
+                    ? "border-primary/80 bg-card/95 shadow-md"
+                    : "border-border/70 bg-card/60 hover:bg-card/90"
+                )}
+              >
+                <button
+                  type="button"
+                  onClick={() => {
+                    const next = isExpanded ? null : (skill as unknown as KeyboardSkill);
+                    setSelectedSkill(next);
+                    skillStore.setSkill(next);
+                  }}
+                  className="w-full flex items-center justify-between p-3.5 text-left cursor-pointer transition-colors"
+                >
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div
+                      className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 shadow-sm"
+                      style={{ backgroundColor: skill.keyboardColor ?? skill.color }}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={skill.icon}
+                        alt={skill.label}
+                        className="w-5 h-5 object-contain"
+                      />
+                    </div>
+                    <span className="font-semibold text-sm text-foreground truncate">
+                      {skill.label}
+                    </span>
+                  </div>
+                  <ArrowRight
+                    className={cn(
+                      "w-4 h-4 text-muted-foreground shrink-0 transition-transform duration-200",
+                      isExpanded && "rotate-90 text-primary"
+                    )}
+                  />
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isExpanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-4 pb-4 pt-1 border-t border-border/50 space-y-3">
+                        <div className="flex items-center justify-between pt-2">
+                          <span className="text-xs font-semibold text-foreground">
+                            {capability.title}
+                          </span>
+                          <Badge
+                            variant="secondary"
+                            className="text-[10px] font-normal"
+                            style={{
+                              borderColor: skill.color,
+                              color: skill.color,
+                            }}
+                          >
+                            {capability.category}
+                          </Badge>
+                        </div>
+
+                        <div className="space-y-1.5">
+                          <div className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-primary">
+                            <Terminal className="w-3 h-3" />
+                            <span>What Nghia can do:</span>
+                          </div>
+                          <ul className="space-y-2 text-xs text-muted-foreground">
+                            {capability.capabilities.map((cap, i) => (
+                              <li key={i} className="flex items-start gap-2">
+                                <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+                                <span className="leading-relaxed text-foreground/90">{cap}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Desktop View: Interactive Capability Frame + 3D Keyboard */}
+        <div className="hidden md:grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-14 items-center min-h-[60vh]">
           {/* Left Column: Interactive Capability Frame */}
           <div className="flex flex-col justify-center z-10 pointer-events-auto max-w-md lg:max-w-lg w-full">
             <Card className="bg-card/80 dark:bg-zinc-950/75 border-border/80 backdrop-blur-md shadow-2xl overflow-hidden min-h-[360px] flex flex-col justify-between transition-all duration-300">
@@ -207,9 +310,9 @@ const SkillsSection = () => {
           </div>
         </div>
 
-        {/* Fallback Grid when 3D is disabled or WebGL fails */}
+        {/* Fallback Grid when 3D is disabled or WebGL fails (Desktop only) */}
         {showGrid && (
-          <ul className="mt-12 mx-auto grid w-full max-w-5xl grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-6 pointer-events-auto">
+          <ul className="hidden md:grid mt-12 mx-auto w-full max-w-5xl grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-6 pointer-events-auto">
             {Object.values(SKILLS).map((skill) => (
               <li
                 key={skill.name}

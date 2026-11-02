@@ -14,14 +14,14 @@ import SectionWrapper from "../ui/section-wrapper";
 
 const ContactSection = () => {
   return (
-    <SectionWrapper id="contact" className="min-h-screen max-w-7xl mx-auto ">
-      <SectionHeader id='contact' className="relative mb-14" title={
+    <SectionWrapper id="contact" className="min-h-0 md:min-h-screen max-w-7xl mx-auto py-8 md:py-16">
+      <SectionHeader id='contact' className="static top-auto mb-8 md:mb-14" title={
         <>
           LET&apos;S WORK <br />
           TOGETHER
         </>} />
       <div className="grid grid-cols-1 md:grid-cols-2 z-[9999] mx-4">
-        <Card className="min-w-7xl bg-white/70 dark:bg-black/70 backdrop-blur-sm rounded-xl mt-10 md:mt-20">
+        <Card className="min-w-7xl bg-white/70 dark:bg-black/70 backdrop-blur-sm rounded-xl mt-4 md:mt-20">
           <CardHeader>
             <CardTitle className="text-4xl">Contact Form</CardTitle>
             <CardDescription>
