@@ -138,6 +138,6 @@ portfolio-nextjs/
 - **LinkedIn**: [trung-nghĩa-phạm](https://www.linkedin.com/in/trung-nghĩa-phạm-2695423b3)
 - **Zalo**: [0335766722](https://zalo.me/0335766722)
 - **GitHub**: [@pham-trung-nghia-dev](https://github.com/pham-trung-nghia-dev)
-- **Curriculum Vitae**: [View CV on Google Drive](https://drive.google.com/file/d/15pnUQ6_fmNiuUqGhwlW1lCKd5FenuFJe/view?usp=sharing)
+- **Curriculum Vitae**: [View CV on Google Drive](https://drive.google.com/file/d/1JlvjmwbT2E4hzZsn4vO4IkjhLAUeIK2l/view?usp=sharing)
 
 ---
