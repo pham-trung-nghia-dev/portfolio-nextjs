@@ -30,9 +30,10 @@ const config = {
   author: "Phạm Trung Nghĩa",
   email: "phamtrungnghia15082003@gmail.com",
   site: "https://phamtrungnghia-fullstack-dev.vercel.app",
+  resume: "https://drive.google.com/file/d/1JlvjmwbT2E4hzZsn4vO4IkjhLAUeIK2l/view?usp=sharing",
 
   get ogImg() {
-    return this.site + "/assets/seo/og-image.png";
+    return this.site + "/assets/seo/og-preview.png";
   },
   social: {
     zalo: "https://zalo.me/0335766722",
