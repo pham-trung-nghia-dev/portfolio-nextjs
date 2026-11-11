@@ -151,12 +151,12 @@ export default function ChatBot() {
           {/* Messages list */}
           <div
             data-lenis-prevent
-            className="flex-1 overflow-y-auto p-4 space-y-3 text-sm overscroll-contain scrollbar-thin scrollbar-thumb-zinc-700"
+            className="flex-1 overflow-y-auto overflow-x-hidden p-4 space-y-3 text-sm overscroll-contain scrollbar-thin scrollbar-thumb-zinc-700"
           >
             {messages.map((m, idx) => (
               <div
                 key={idx}
-                className={`flex gap-2.5 ${
+                className={`flex gap-2.5 max-w-full ${
                   m.role === "user" ? "justify-end" : "justify-start"
                 }`}
               >
@@ -172,7 +172,7 @@ export default function ChatBot() {
                   </div>
                 )}
                 <div
-                  className={`max-w-[80%] rounded-2xl px-3.5 py-2 text-xs sm:text-sm whitespace-pre-wrap leading-relaxed shadow-sm ${
+                  className={`max-w-[82%] rounded-2xl px-3.5 py-2 text-xs sm:text-sm whitespace-pre-wrap break-words [overflow-wrap:anywhere] leading-relaxed shadow-sm ${
                     m.role === "user"
                       ? "bg-emerald-600 text-white rounded-tr-none"
                       : "bg-zinc-800/80 text-zinc-200 border border-zinc-700/50 rounded-tl-none"
