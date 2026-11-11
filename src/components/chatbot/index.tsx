@@ -66,7 +66,9 @@ export default function ChatBot() {
           ...prev,
           {
             role: "assistant",
-            content: data.error || "Xin lỗi, đã xảy ra lỗi kết nối.",
+            content:
+              data.error ||
+              "Tự nhiên thấy hơi mệt ngang, cho tui 'ngủ trưa' tầm 5 phút nha. Bạn uống miếng nước rồi quay lại thử lại với tui sau nghen! ☕",
           },
         ]);
       }
@@ -75,7 +77,8 @@ export default function ChatBot() {
         ...prev,
         {
           role: "assistant",
-          content: "Không thể kết nối đến máy chủ. Bạn vui lòng thử lại!",
+          content:
+            "Tự nhiên thấy hơi mệt ngang, cho tui 'ngủ trưa' tầm 5 phút nha. Bạn uống miếng nước rồi quay lại thử lại với tui sau nghen! ☕",
         },
       ]);
     } finally {
