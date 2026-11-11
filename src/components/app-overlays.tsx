@@ -9,6 +9,7 @@ import RadialMenu from "@/components/radial-menu/index";
 import MotionNudge from "@/components/motion-nudge";
 import DomainNotice from "@/components/domain-notice";
 import Analytics from "@/components/analytics";
+import ChatBot from "@/components/chatbot";
 import { usePerfProfile } from "@/hooks/use-perf-profile";
 
 export default function AppOverlays() {
@@ -35,6 +36,7 @@ export default function AppOverlays() {
       {isHome && <MotionNudge />}
       <DomainNotice />
       <Analytics />
+      <ChatBot />
     </>
   );
 }

@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Đổ bóng nhẹ -->
+    <filter id="soft-shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#0284c7" flood-opacity="0.25" />
+    </filter>
+
+    <!-- Gradient bong bóng chat -->
+    <linearGradient id="bubbleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+
+    <!-- Gradient thân robot -->
+    <linearGradient id="botBodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#e0f2fe" />
+    </linearGradient>
+
+    <!-- Gradient màn hình mặt -->
+    <linearGradient id="screenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+
+    <!-- Gradient tai nghe -->
+    <linearGradient id="headphoneGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#0369a1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Bóng đổ đáy -->
+  <ellipse cx="240" cy="480" rx="110" ry="14" fill="#cbd5e1" opacity="0.6" />
+
+  <!-- Bong bóng chat (Khung chính) -->
+  <g filter="url(#soft-shadow)">
+    <path d="M 256,40 
+             C 375,40 472,137 472,256 
+             C 472,375 375,472 256,472 
+             C 214,472 175,460 142,439 
+             L 60,465 
+             L 88,388 
+             C 58,351 40,305 40,256 
+             C 40,137 137,40 256,40 Z" fill="url(#bubbleGrad)" />
+  </g>
+
+  <!-- Viền sáng trên bong bóng chat -->
+  <path d="M 100,160 C 130,95 190,56 265,56" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round" opacity="0.4" />
+
+  <!-- Vòng quàng tai nghe (Headband) -->
+  <path d="M 145,260 A 120,120 0 0,1 367,260" fill="none" stroke="#0284c7" stroke-width="26" stroke-linecap="round" />
+  <path d="M 145,260 A 120,120 0 0,1 367,260" fill="none" stroke="#38bdf8" stroke-width="12" stroke-linecap="round" opacity="0.8" />
+
+  <!-- Ăng-ten -->
+  <rect x="250" y="112" width="12" height="32" rx="6" fill="#bae6fd" />
+  <circle cx="256" cy="108" r="14" fill="#38bdf8" stroke="#ffffff" stroke-width="4" />
+
+  <!-- Đầu robot -->
+  <rect x="146" y="145" width="220" height="190" rx="95" fill="url(#botBodyGrad)" />
+
+  <!-- Màn hình kính mặt -->
+  <rect x="171" y="180" width="170" height="125" rx="55" fill="url(#screenGrad)" />
+
+  <!-- Mắt LED xanh neon -->
+  <ellipse cx="216" cy="232" rx="15" ry="19" fill="#38bdf8" />
+  <circle cx="221" cy="226" r="6" fill="#ffffff" />
+
+  <ellipse cx="296" cy="232" rx="15" ry="19" fill="#38bdf8" />
+  <circle cx="301" cy="226" r="6" fill="#ffffff" />
+
+  <!-- Nụ cười LED -->
+  <path d="M 238,260 Q 256,275 274,260" fill="none" stroke="#38bdf8" stroke-width="5" stroke-linecap="round" />
+
+  <!-- Má hồng công nghệ nhẹ -->
+  <ellipse cx="196" cy="256" rx="10" ry="5" fill="#38bdf8" opacity="0.3" />
+  <ellipse cx="316" cy="256" rx="10" ry="5" fill="#38bdf8" opacity="0.3" />
+
+  <!-- Củ tai nghe 2 bên -->
+  <!-- Tai trái -->
+  <rect x="130" y="215" width="28" height="70" rx="14" fill="url(#headphoneGrad)" stroke="#ffffff" stroke-width="4" />
+  <!-- Tai phải -->
+  <rect x="354" y="215" width="28" height="70" rx="14" fill="url(#headphoneGrad)" stroke="#ffffff" stroke-width="4" />
+
+  <!-- Cần Mic & Đầu Mic đàm thoại -->
+  <path d="M 148,270 Q 165,342 232,342" fill="none" stroke="#0369a1" stroke-width="9" stroke-linecap="round" />
+  <rect x="228" y="332" width="28" height="20" rx="10" fill="#0f172a" stroke="#38bdf8" stroke-width="3" />
+</svg>
