@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
       return NextResponse.json(
-        { error: "GEMINI_API_KEY chưa được cấu hình trong .env.local" },
+        { error: "Tự nhiên thấy hơi mệt ngang, cho tui 'ngủ trưa' tầm 5 phút nha. Bạn uống miếng nước rồi quay lại thử lại với tui sau nghen! ☕" },
         { status: 500 }
       );
     }
@@ -81,7 +81,7 @@ export async function POST(req: NextRequest) {
         contents,
         generationConfig: {
           temperature: 0.7,
-          maxOutputTokens: 800,
+          maxOutputTokens: 2048,
         },
       }),
     });
@@ -90,7 +90,7 @@ export async function POST(req: NextRequest) {
       const errText = await response.text();
       console.error("Gemini API error:", errText);
       return NextResponse.json(
-        { error: "Lỗi kết nối Gemini API. Vui lòng thử lại sau." },
+        { error: "Tự nhiên thấy hơi mệt ngang, cho tui 'ngủ trưa' tầm 5 phút nha. Bạn uống miếng nước rồi quay lại thử lại với tui sau nghen! ☕" },
         { status: response.status }
       );
     }
@@ -98,13 +98,13 @@ export async function POST(req: NextRequest) {
     const data = await response.json();
     const reply =
       data.candidates?.[0]?.content?.parts?.[0]?.text ||
-      "Xin lỗi, tui không thể phản hồi câu hỏi này lúc này.";
+      "Tự nhiên thấy hơi mệt ngang, cho tui 'ngủ trưa' tầm 5 phút nha. Bạn uống miếng nước rồi quay lại thử lại với tui sau nghen! ☕";
 
     return NextResponse.json({ reply });
   } catch (error: any) {
     console.error("Chat API internal error:", error?.message || error);
     return NextResponse.json(
-      { error: error?.message || "Đã có lỗi xảy ra tại máy chủ." },
+      { error: "Tự nhiên thấy hơi mệt ngang, cho tui 'ngủ trưa' tầm 5 phút nha. Bạn uống miếng nước rồi quay lại thử lại với tui sau nghen! ☕" },
       { status: 500 }
     );
   }
